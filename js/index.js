@@ -17,7 +17,16 @@ const light = new THREE.DirectionalLight(color, intensity);
 light.position.set(-1, 2, 4);
 scene.add(light);
 
-let width, height, blob;
+let width, height, blob, percentage;
+
+const checkPercentage = (value) => {
+  if (value == 100) {
+    document.querySelector('.loader').style.display = "none";
+  } else {
+    document.querySelector('.loader__text__percentage').textContent = value;
+  }
+}
+
 
 const $play = document.querySelector(".play");
 $play.addEventListener("click", (e) => {
@@ -57,7 +66,11 @@ audioLoader.load("assets/song.mp3", function (buffer) {
   sound.setBuffer(buffer);
   sound.setLoop(true);
   sound.setVolume(0.5);
-});
+}, function ( xhr ) {
+  percentage = Math.round(xhr.loaded / xhr.total * 100);
+  checkPercentage(percentage);
+  
+},);
 const analyser = new THREE.AudioAnalyser(sound, 32);
 const data = new THREE.DataTexture(
   analyser.data,
