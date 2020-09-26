@@ -1,5 +1,7 @@
 # threeJSChallenge
 
+SEE IT [HERE](https://threejschallenge.netlify.app/)
+
 To learn threeJS I made this music visualiser. 🎶 🎶 
 
 ## Geometry
